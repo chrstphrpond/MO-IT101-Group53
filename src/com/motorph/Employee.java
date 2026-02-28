@@ -23,7 +23,7 @@ public class Employee {
     public Employee(String employeeNumber, String lastName, String firstName,
                     String birthday, String sssNumber, String philHealthNumber,
                     String tin, String pagIbigNumber, String status,
-                    String position, double basicMonthlySalary) {
+                    String position, double basicMonthlySalary, double hourlyRate) {
         this.employeeNumber = employeeNumber;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -35,8 +35,7 @@ public class Employee {
         this.status = status;
         this.position = position;
         this.basicMonthlySalary = basicMonthlySalary;
-        // Hourly rate = Monthly Salary / (22 days * 8 hours)
-        this.hourlyRate = basicMonthlySalary / (22 * 8);
+        this.hourlyRate = hourlyRate;
     }
 
     // Getters

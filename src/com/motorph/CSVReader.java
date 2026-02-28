@@ -55,7 +55,7 @@ public class CSVReader {
 
         for (String[] fields : records) {
             try {
-                // TODO: Adjust field indexes to match actual MotorPH CSV column order
+                // Adjust field indexes to match actual MotorPH CSV column order
                 String empNum    = fields[0];
                 String lastName  = fields[1];
                 String firstName = fields[2];
@@ -67,9 +67,10 @@ public class CSVReader {
                 String status    = fields[10];
                 String position  = fields[11];
                 double salary    = Double.parseDouble(fields[13].replace(",", ""));
+                double hourlyRate = Double.parseDouble(fields[18].replace(",", ""));
 
                 employees.add(new Employee(empNum, lastName, firstName, birthday,
-                        sss, philHealth, tin, pagIbig, status, position, salary));
+                        sss, philHealth, tin, pagIbig, status, position, salary, hourlyRate));
             } catch (Exception e) {
                 System.err.println("Skipping invalid record: " + String.join(",", fields));
             }
