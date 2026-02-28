@@ -86,10 +86,10 @@ public class Main {
         System.out.print("Enter Employee Number (or ENTER to list all): ");
         String empNum = scanner.nextLine().trim();
 
-        List<String[]> employees = csvReader.loadEmployees("data/employees.csv");
+        List<Employee> employees = csvReader.loadEmployees("data/employees.csv");
         boolean found = false;
 
-        for (Employee emp : csvReader.parseEmployees(employees)) {
+        for (Employee emp : employees) {
             if (empNum.isEmpty() || emp.getEmployeeNumber().equals(empNum)) {
                 printEmployeeDetails(emp);
                 found = true;
@@ -131,7 +131,6 @@ public class Main {
         System.out.print("Enter Employee Number: ");
         String empNum = scanner.nextLine().trim();
 
-        // Look up employee
         Employee emp = findEmployee(empNum);
         if (emp == null) {
             System.out.println("[!] Employee #" + empNum + " not found.");
@@ -158,8 +157,8 @@ public class Main {
         double pagIbig    = dc.computePagIbig(emp.getBasicMonthlySalary());
 
         // FR-07: Withholding tax on taxable income
-        double taxableIncome    = grossPay - sss - philHealth - pagIbig - lateDeduction;
-        double withholdingTax   = dc.computeWithholdingTax(taxableIncome);
+        double taxableIncome  = grossPay - sss - philHealth - pagIbig - lateDeduction;
+        double withholdingTax = dc.computeWithholdingTax(taxableIncome);
 
         // FR-08: Net Pay
         double netPay = payrollCalculator.computeNetPay(emp, grossPay, lateDeduction);
@@ -229,8 +228,8 @@ public class Main {
      * @return Employee object if found, null otherwise
      */
     private static Employee findEmployee(String employeeNumber) {
-        List<String[]> rows = csvReader.loadEmployees("data/employees.csv");
-        for (Employee emp : csvReader.parseEmployees(rows)) {
+        List<Employee> employees = csvReader.loadEmployees("data/employees.csv");
+        for (Employee emp : employees) {
             if (emp.getEmployeeNumber().equals(employeeNumber)) {
                 return emp;
             }
